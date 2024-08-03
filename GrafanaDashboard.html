@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Metrics Dashboard</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .graph-container {
+            width: 48%; /* Adjust to leave some space between graphs */
+			height: 300px; /* Set the desired height */
+			background-color: #2b2b2b;
+            border-radius: 5px;
+            padding: 10px;
+            position: relative; /* Added position property */
+        }
+		.graph-heading {
+			font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+			text-align: center; /* Center the heading horizontally */
+            top: 10px; /* Adjust top position as needed */
+            left: 10px; /* Adjust left position as needed */
+        }
+		.legend {
+            position: relative;
+            bottom: 10px;
+            right: 10px;
+			left: 5px;
+            font-size: 12px;
+            color: #ccc;
+			height: 260px; /* Set the desired height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Server Metrics Dashboard</h1>
+
+        <!-- Row 1: Server 100 -->
+        <div class="row">
+            <!-- CPU Utilization for Server 100 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 100: CPU Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="cpuGraph100"></canvas>
+				</div>
+            </div>
+            <!-- Memory Utilization for Server 100 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 100: Memory Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="memoryGraph100"></canvas>
+				</div>
+            </div>
+        </div>
+
+        <!-- Row 2: Server 101 -->
+        <div class="row">
+            <!-- CPU Utilization for Server 101 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 101: CPU Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="cpuGraph101"></canvas>
+				</div>
+            </div>
+            <!-- Memory Utilization for Server 101 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 101: Memory Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="memoryGraph101"></canvas>
+				</div>
+            </div>
+        </div>
+
+        <!-- Row 3: Server 102 -->
+        <div class="row">
+            <!-- CPU Utilization for Server 102 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 102: CPU Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="cpuGraph102"></canvas>
+				</div>
+            </div>
+            <!-- Memory Utilization for Server 102 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 102: Memory Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="memoryGraph102"></canvas>
+				</div>
+            </div>
+        </div>
+		
+		<!-- Row 4: Server 103 -->
+        <div class="row">
+            <!-- CPU Utilization for Server 103 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 103: CPU Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="cpuGraph103"></canvas>
+				</div>
+            </div>
+            <!-- Memory Utilization for Server 103 -->
+            <div class="graph-container">
+				<div class="graph-heading">Server 103: Memory Utilization</div>
+				<br />
+				<div class="legend">
+					<canvas id="memoryGraph103"></canvas>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data (replace with actual data)
+        const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+        const cpuData100 = [80, 85, 78, 92, 88];
+        const memoryData100 = [60, 65, 70, 68, 72];
+		
+		const cpuData101 = [70, 85, 69, 61, 88];
+        const memoryData101 = [50, 65, 50, 68, 67];
+		
+		const cpuData102 = [70, 71, 58, 72, 90];
+        const memoryData102 = [50, 75, 60, 52, 76];
+		
+		const cpuData103 = [40, 71, 58, 82, 60];
+        const memoryData103 = [60, 75, 80, 52, 56];
+
+        // Create CPU and memory graphs for Server 100
+        new Chart(document.getElementById('cpuGraph100'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CPU Utilization',
+                    data: cpuData100,
+                    borderColor: 'orange',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+
+        new Chart(document.getElementById('memoryGraph100'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Memory Utilization',
+                    data: memoryData100,
+                    borderColor: 'purple',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+		
+		// Create CPU and memory graphs for Server 101
+        new Chart(document.getElementById('cpuGraph101'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CPU Utilization',
+                    data: cpuData101,
+                    borderColor: 'orange',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+
+        new Chart(document.getElementById('memoryGraph101'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Memory Utilization',
+                    data: memoryData101,
+                    borderColor: 'purple',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+
+        // Create CPU and memory graphs for Server 102
+        new Chart(document.getElementById('cpuGraph102'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CPU Utilization',
+                    data: cpuData102,
+                    borderColor: 'orange',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+
+        new Chart(document.getElementById('memoryGraph102'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Memory Utilization',
+                    data: memoryData102,
+                    borderColor: 'purple',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+		
+		// Create CPU and memory graphs for Server 103
+        new Chart(document.getElementById('cpuGraph103'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'CPU Utilization',
+                    data: cpuData103,
+                    borderColor: 'orange',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+
+        new Chart(document.getElementById('memoryGraph103'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Memory Utilization',
+                    data: memoryData103,
+                    borderColor: 'purple',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+				legend: {
+                    display: false,
+                },
+            }
+        });
+    </script>
+</body>
+</html>
